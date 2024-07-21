@@ -24,12 +24,18 @@ return {
       keys[#keys + 1] = {
         "gd",
         function()
-          -- DO NOT RESUSE WINDOW
           require("telescope.builtin").lsp_definitions({ reuse_win = false })
         end,
         desc = "Goto Definition",
         has = "definition",
       }
+      -- Add the new keybindings here
+      keys[#keys + 1] = { "K", vim.lsp.buf.hover, desc = "Hover Documentation" }
+      keys[#keys + 1] = { "<leader>gd", vim.lsp.buf.definition, desc = "Goto Definition" }
+      keys[#keys + 1] = { "<leader>gr", vim.lsp.buf.references, desc = "References" }
+      keys[#keys + 1] = { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action" }
+      keys[#keys + 1] = { "<leader>rn", vim.lsp.buf.rename, desc = "Rename" }
+      keys[#keys + 1] = { "<space>rn", vim.lsp.buf.rename, desc = "Rename" }
     end,
     opts = {
       inlay_hints = { enabled = false },
