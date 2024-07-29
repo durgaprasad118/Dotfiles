@@ -1,5 +1,4 @@
 return {
-  -- tools
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
@@ -12,6 +11,7 @@ return {
         "tailwindcss-language-server",
         "typescript-language-server",
         "css-lsp",
+        "vls", -- Add Vue Language Server
       })
     end,
   },
@@ -86,7 +86,6 @@ return {
           },
         },
         lua_ls = {
-          -- enabled = false,
           single_file_support = true,
           settings = {
             Lua = {
@@ -98,9 +97,7 @@ return {
                 callSnippet = "Both",
               },
               misc = {
-                parameters = {
-                  -- "--log-level=trace",
-                },
+                parameters = {},
               },
               hint = {
                 enable = true,
@@ -118,7 +115,6 @@ return {
               },
               diagnostics = {
                 disable = { "incomplete-signature-doc", "trailing-space" },
-                -- enable = false,
                 groupSeverity = {
                   strong = "Warning",
                   strict = "Warning",
@@ -149,6 +145,12 @@ return {
               },
             },
           },
+        },
+        vls = {}, -- Configuration for Vue Language Server
+        astro = { -- Configuration for Astro Language Server
+          root_dir = function(...)
+            return require("lspconfig.util").root_pattern("astro.config.js", "astro.config.ts")(...)
+          end,
         },
       },
       setup = {},
