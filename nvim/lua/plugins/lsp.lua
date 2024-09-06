@@ -1,3 +1,4 @@
+-- Neovim configuration for LSP and Tailwind CSS IntelliSense
 return {
   {
     "williamboman/mason.nvim",
@@ -11,12 +12,12 @@ return {
         "tailwindcss-language-server",
         "typescript-language-server",
         "css-lsp",
-        "vls", -- Add Vue Language Server
+        "vls", -- Vue Language Server
       })
     end,
   },
 
-  -- lsp servers
+  -- LSP servers configuration
   {
     "neovim/nvim-lspconfig",
     init = function()
@@ -29,7 +30,6 @@ return {
         desc = "Goto Definition",
         has = "definition",
       }
-      -- Add the new keybindings here
       keys[#keys + 1] = { "K", vim.lsp.buf.hover, desc = "Hover Documentation" }
       keys[#keys + 1] = { "<leader>gd", vim.lsp.buf.definition, desc = "Goto Definition" }
       keys[#keys + 1] = { "<leader>gr", vim.lsp.buf.references, desc = "References" }
@@ -39,15 +39,22 @@ return {
     end,
     opts = {
       inlay_hints = { enabled = false },
-      ---@type lspconfig.options
       servers = {
         cssls = {},
         tailwindcss = {
           cmd = { "tailwindcss-language-server", "--stdio" },
           filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-          settings = {},
+          settings = {
+            tailwindCSS = {
+              validate = true,
+              lint = {
+                cssConflict = "warning",
+                invalidApply = "error",
+              },
+            },
+          },
           root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
+            return require("lspconfig.util").root_pattern(".git", "tailwind.config.js")(...)
           end,
         },
         tsserver = {
@@ -99,9 +106,6 @@ return {
                 workspaceWord = true,
                 callSnippet = "Both",
               },
-              misc = {
-                parameters = {},
-              },
               hint = {
                 enable = true,
                 setType = false,
@@ -110,47 +114,20 @@ return {
                 semicolon = "Disable",
                 arrayIndex = "Disable",
               },
-              doc = {
-                privateName = { "^_" },
-              },
-              type = {
-                castNumberToInteger = true,
-              },
               diagnostics = {
                 disable = { "incomplete-signature-doc", "trailing-space" },
-                groupSeverity = {
-                  strong = "Warning",
-                  strict = "Warning",
-                },
-                groupFileStatus = {
-                  ["ambiguity"] = "Opened",
-                  ["await"] = "Opened",
-                  ["codestyle"] = "None",
-                  ["duplicate"] = "Opened",
-                  ["global"] = "Opened",
-                  ["luadoc"] = "Opened",
-                  ["redefined"] = "Opened",
-                  ["strict"] = "Opened",
-                  ["strong"] = "Opened",
-                  ["type-check"] = "Opened",
-                  ["unbalanced"] = "Opened",
-                  ["unused"] = "Opened",
-                },
-                unusedLocalExclude = { "_*" },
-              },
-              format = {
-                enable = false,
-                defaultConfig = {
-                  indent_style = "space",
-                  indent_size = "2",
-                  continuation_indent_size = "2",
-                },
               },
             },
           },
         },
-        vls = {}, -- Configuration for Vue Language Server
-        astro = { -- Configuration for Astro Language Server
+        vls = {
+          cmd = { "vls" },
+          filetypes = { "vue" },
+          root_dir = function(...)
+            return require("lspconfig.util").root_pattern("vue.config.js", "package.json", ".git")(...)
+          end,
+        },
+        astro = {
           root_dir = function(...)
             return require("lspconfig.util").root_pattern("astro.config.js", "astro.config.ts")(...)
           end,
