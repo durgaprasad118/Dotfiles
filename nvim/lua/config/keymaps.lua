@@ -71,3 +71,6 @@ end)
 keymap.set("n", "<leader>i", function()
 	require("craftzdog.lsp").toggleInlayHints()
 end)
+-- Resize window using <leader> + r + j/k/l/h
+vim.keymap.set("n", "<leader>rl", "<cmd>vertical resize +5<cr>", { desc = "Increase Window Width" })
+vim.keymap.set("n", "<leader>rh", "<cmd>vertical resize -5<cr>", { desc = "Decrease Window Width" })
