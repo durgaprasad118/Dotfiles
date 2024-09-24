@@ -35,12 +35,10 @@ return {
 				},
 				git_status = {
 					symbols = {
-						-- Change type
 						added = "",
 						deleted = "",
 						modified = "",
 						renamed = "",
-						-- Status type
 						untracked = "",
 						ignored = "",
 						unstaged = "",
@@ -50,21 +48,24 @@ return {
 				},
 			},
 			window = {
-				position = "float",
+				position = "left", -- Change this to 'left' or 'right' for side preview
 				width = 35,
+				popup = {
+					border_style = "single", -- Optional: Set border style for popup windows
+				},
+				side_preview = { -- Enable side preview
+					enable = true,
+					width = 40, -- Width of the preview window
+					height = 20, -- Height of the preview window
+				},
 			},
 			filesystem = {
 				use_libuv_file_watcher = true,
 				filtered_items = {
 					hide_dotfiles = false,
 					hide_gitignored = false,
-					hide_by_name = {
-						"node_modules",
-					},
-					never_show = {
-						".DS_Store",
-						"thumbs.db",
-					},
+					hide_by_name = { "node_modules" },
+					never_show = { ".DS_Store", "thumbs.db" },
 				},
 			},
 			source_selector = {

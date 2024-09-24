@@ -37,7 +37,6 @@ keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- New tab
 keymap.set("n", "te", ":tabedit")
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
@@ -54,7 +53,7 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
-vim.keymap.set("n", "<leader>mp", ":MarkdownPreview<CR>", { noremap = true, silent = true })
+keymap.set("n", "<leader>mp", ":MarkdownPreview<CR>", { noremap = true, silent = true })
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
 	vim.diagnostic.goto_next()
@@ -68,5 +67,5 @@ keymap.set("n", "<leader>i", function()
 	require("craftzdog.lsp").toggleInlayHints()
 end)
 -- Resize window using <leader> + r + j/k/l/h
-vim.keymap.set("n", "<leader>rl", "<cmd>vertical resize +5<cr>", { desc = "Increase Window Width" })
-vim.keymap.set("n", "<leader>rh", "<cmd>vertical resize -5<cr>", { desc = "Decrease Window Width" })
+keymap.set("n", "<leader>rl", "<cmd>vertical resize +5<cr>", { desc = "Increase Window Width" })
+keymap.set("n", "<leader>rh", "<cmd>vertical resize -5<cr>", { desc = "Decrease Window Width" })
