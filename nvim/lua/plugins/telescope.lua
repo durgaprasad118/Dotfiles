@@ -31,7 +31,7 @@ return {
 				"<leader>sf",
 				function()
 					require("telescope.builtin").find_files({
-						previewer = true, -- Enable preview for find_files
+						previewer = true,
 					})
 				end,
 				desc = "Find File (CWD)",
@@ -40,12 +40,11 @@ return {
 				"<leader>sg",
 				function()
 					require("telescope.builtin").git_files({
-						previewer = true, -- Enable preview for git_files
+						previewer = true,
 					})
 				end,
 				desc = "Search Git Files",
 			},
-			-- Other key mappings...
 			{
 				"<leader>sb",
 				function()
@@ -92,8 +91,14 @@ return {
 					set_env = { ["COLORTERM"] = "truecolor" }, -- default is nil
 					layout_config = {
 						prompt_position = "top",
+						height = 0.85, -- Increase height of the entire Telescope window
+						width = 0.9, -- Increase width of the entire Telescope window
+						horizontal = {
+							width_padding = 0.15, -- Make the left side a bit larger
+							height_padding = 0.1, -- Adjust vertical padding
+							preview_width = 0.65, -- Make preview a bit smaller
+						},
 						preview_cutoff = 120,
-						height = 0.8, -- Increase height of the entire Telescope window
 					},
 					vimgrep_arguments = {
 						"rg",
@@ -109,65 +114,58 @@ return {
 				},
 				pickers = {
 					find_files = {
-						previewer = true, -- Enable preview for find_files
 						layout_config = {
-							height = 0.6, -- Increase height of the find_files picker
+							height = 0.7, -- Increase height of the find_files picker
+							width = 0.9, -- Increase width of the find_files picker
 							prompt_position = "top",
-							preview_cutoff = 120,
+							horizontal = {
+								width_padding = 0.15, -- Make the left side a bit larger
+								height_padding = 0.1, -- Adjust vertical padding
+								preview_width = 0.65, -- Make preview a bit smaller
+							},
 						},
 					},
 					git_files = {
-						previewer = true, -- Enable preview for git_files
 						layout_config = {
-							height = 0.6, -- Increase height of the git_files picker
+							height = 0.7, -- Increase height of the git_files picker
+							width = 0.9, -- Increase width of the git_files picker
 							prompt_position = "top",
-							preview_cutoff = 120,
+							horizontal = {
+								width_padding = 0.15, -- Make the left side a bit larger
+								height_padding = 0.1, -- Adjust vertical padding
+								preview_width = 0.65, -- Make preview a bit smaller
+							},
 						},
 					},
 					buffers = {
-						mappings = {
-							i = {
-								["<c-d>"] = actions.delete_buffer,
-							},
-							n = {
-								["<c-d>"] = actions.delete_buffer,
-							},
-						},
-						previewer = true, -- Enable preview for buffers
-						initial_mode = "normal",
 						layout_config = {
-							height = 0.6, -- Increase height of the buffers picker
-							width = 0.8, -- Optionally increase width as well
+							height = 0.7, -- Increase height of the buffers picker
+							width = 0.9, -- Increase width of the buffers picker
 							prompt_position = "top",
-							preview_cutoff = 120,
+							horizontal = {
+								width_padding = 0.15, -- Make the left side a bit larger
+								height_padding = 0.1, -- Adjust vertical padding
+								preview_width = 0.65, -- Make preview a bit smaller
+							},
 						},
 					},
 					current_buffer_fuzzy_find = {
-						previewer = true,
 						layout_config = {
+							height = 0.7, -- Increase height of current_buffer_fuzzy_find picker
+							width = 0.9, -- Increase width of current_buffer_fuzzy_find picker
 							prompt_position = "top",
-							preview_cutoff = 120,
+							horizontal = {
+								width_padding = 0.15,
+								height_padding = 0.1,
+								preview_width = 0.65,
+							},
 						},
 					},
-					live_grep = {
-						only_sort_text = true,
-						previewer = true,
-					},
-					grep_string = {
-						only_sort_text = true,
-						previewer = true,
-					},
-					lsp_references = {
-						show_line = false,
-						previewer = true,
-					},
-					treesitter = {
-						show_line = false,
-						previewer = true,
-					},
-					colorscheme = {
-						enable_preview = true,
-					},
+					live_grep = { previewer = true },
+					grep_string = { previewer = true },
+					lsp_references = { show_line = false, previewer = true },
+					treesitter = { show_line = false, previewer = true },
+					colorscheme = { enable_preview = true },
 				},
 				extensions = {
 					fzf = {
@@ -191,10 +189,7 @@ return {
 							},
 						}),
 					},
-					package_info = {
-						-- Optional theme (the extension doesn't set a default theme)
-						-- theme="ivy",
-					},
+					package_info = {},
 				},
 			})
 			telescope.load_extension("fzf")
