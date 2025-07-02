@@ -10,3 +10,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("n", "<C-/>", ":ToggleTerm<CR>", { noremap = true, silent = true, desc = "Open floating terminal" })
+
+-- run 'cargo run' in a floating terminal
+vim.keymap.set("n", "<leader>rr", function()
+  require("toggleterm.terminal").Terminal
+    :new({ cmd = "cargo run", direction = "float", close_on_exit = false })
+    :toggle()
+end, { desc = "Cargo Run (Rust)" })

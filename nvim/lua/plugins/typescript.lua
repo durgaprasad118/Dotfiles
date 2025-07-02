@@ -14,15 +14,6 @@ return {
           complete_function_calls = true,
           include_completions_with_insert_text = true,
           tsserver_file_preferences = {
-            includeInlayParameterNameHints = "all", -- "none" | "literals" | "all";
-            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
-            includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-            includeCompletionsForModuleExports = true,
             quotePreference = "auto",
             -- autoImportFileExcludePatterns = { "node_modules/*", ".git/*" },
           },
