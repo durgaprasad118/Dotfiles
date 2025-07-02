@@ -6,6 +6,7 @@ theme = catppuccin-macchiato
 
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
+cursor-color = #6082B6
 adjust-cell-height = 35%
 
 mouse-hide-while-typing = true
@@ -15,5 +16,12 @@ window-padding-balance = true
 window-save-state = always
 macos-titlebar-style = transparent
 background-opacity = 0.95
+
+shell-integration = zsh
+
+bold-is-bright = true
+copy-on-select = clipboard
+window-save-state = always
+quit-after-last-window-closed = true
 
 
